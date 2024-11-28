@@ -1,0 +1,559 @@
+{
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.60\",\"type\":2}},\"activeSectionIndex\":0,\"modelExtensions\":[{\"name\":\"extension\",\"entities\":[{\"name\":\"fato_recebimentos\",\"extends\":\"fato_recebimentos\",\"measures\":[{\"name\":\"Receita\",\"dataType\":3,\"expression\":\"SUM(fato_recebimentos[valor_recebido])\",\"errorMessage\":null,\"hidden\":false,\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"\\\"R$\\\" #,0.00;-\\\"R$\\\" #,0.00;\\\"R$\\\" #,0.00\",\"format\":\"CurrencyCustom\",\"accuracy\":2,\"thousandSeparator\":true,\"currencyFormat\":{\"lcid\":1046,\"culture\":\"pt-BR\",\"currencySymbol\":\"R$\",\"positivePattern\":2,\"negativePattern\":9},\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas\"},{\"name\":\"Saídas\",\"dataType\":3,\"expression\":\"SUM(fato_pagamentos[Valor])\",\"errorMessage\":null,\"hidden\":false,\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"\\\"R$\\\" #,0;-\\\"R$\\\" #,0;\\\"R$\\\" #,0\",\"format\":\"CurrencyCustom\",\"accuracy\":0,\"thousandSeparator\":true,\"currencyFormat\":{\"lcid\":1046,\"culture\":\"pt-BR\",\"currencySymbol\":\"R$\",\"positivePattern\":2,\"negativePattern\":9},\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas\"},{\"name\":\"Lucro\",\"dataType\":3,\"expression\":\"[Receita] - [Saídas]\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Receita\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Saídas\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"\\\"R$\\\" #,0.00;-\\\"R$\\\" #,0.00;\\\"R$\\\" #,0.00\",\"format\":\"CurrencyCustom\",\"accuracy\":2,\"thousandSeparator\":true,\"currencyFormat\":{\"lcid\":1046,\"culture\":\"pt-BR\",\"currencySymbol\":\"R$\",\"positivePattern\":2,\"negativePattern\":9},\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas\"},{\"name\":\"Custos\",\"dataType\":3,\"expression\":\"CALCULATE(\\r\\n                   [Saídas],\\r\\n                   dim_plano_contas[lancamento]=\\\"Custo\\\")\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Saídas\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"\\\"R$\\\" #,0.00;-\\\"R$\\\" #,0.00;\\\"R$\\\" #,0.00\",\"format\":\"CurrencyCustom\",\"accuracy\":2,\"thousandSeparator\":true,\"currencyFormat\":{\"lcid\":1046,\"culture\":\"pt-BR\",\"currencySymbol\":\"R$\",\"positivePattern\":2,\"negativePattern\":9},\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas\"},{\"name\":\"Despesas\",\"dataType\":3,\"expression\":\"CALCULATE(\\r\\n                   [Saídas], dim_plano_contas[lancamento]= \\\"Despesa\\\")\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Saídas\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"\\\"R$\\\" #,0.00;-\\\"R$\\\" #,0.00;\\\"R$\\\" #,0.00\",\"format\":\"CurrencyCustom\",\"accuracy\":2,\"thousandSeparator\":true,\"currencyFormat\":{\"lcid\":1046,\"culture\":\"pt-BR\",\"currencySymbol\":\"R$\",\"positivePattern\":2,\"negativePattern\":9},\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas\"},{\"name\":\"Margem Bruta\",\"dataType\":3,\"expression\":\"[Receita] -[Custos]\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Receita\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Custos\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"\\\"R$\\\" #,0.00;-\\\"R$\\\" #,0.00;\\\"R$\\\" #,0.00\",\"format\":\"CurrencyCustom\",\"accuracy\":2,\"thousandSeparator\":true,\"currencyFormat\":{\"lcid\":1046,\"culture\":\"pt-BR\",\"currencySymbol\":\"R$\",\"positivePattern\":2,\"negativePattern\":9},\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas\"},{\"name\":\"Receita ano anterior\",\"dataType\":3,\"expression\":\"CALCULATE(\\r\\n                                  [Receita],\\r\\n                                  SAMEPERIODLASTYEAR(dim_date[Date]))\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Receita\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"\\\"R$\\\" #,0;-\\\"R$\\\" #,0;\\\"R$\\\" #,0\",\"format\":\"CurrencyCustom\",\"accuracy\":0,\"thousandSeparator\":true,\"currencyFormat\":{\"lcid\":1046,\"culture\":\"pt-BR\",\"currencySymbol\":\"R$\",\"positivePattern\":2,\"negativePattern\":9},\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas variação\"},{\"name\":\"Lucro %\",\"dataType\":3,\"expression\":\"DIVIDE([Lucro], [Receita])\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Lucro\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Receita\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"0.00 %;-0.00 %;0.00 %\",\"format\":\"Percentage\",\"accuracy\":2,\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas\"},{\"name\":\"Variação Receita (%)\",\"dataType\":3,\"expression\":\"\\r\\nDIVIDE(\\r\\n        ([Receita])-[Receita ano anterior],\\r\\n    [Receita Ano Anterior],\\r\\n    0\\r\\n)\\r\\n\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Receita\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Receita ano anterior\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"0.00 %;-0.00 %;0.00 %\",\"format\":\"Percentage\",\"accuracy\":2,\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas variação\"},{\"name\":\"Indicador Receita\",\"dataType\":3,\"expression\":\"\\r\\nIF(\\r\\n     [Receita] > [Receita Ano Anterior],\\r\\n    \\\"🟢 \\\" &  FORMAT([Variação Receita (%)], \\\"0.00%\\\"), \\r\\n    \\\"🔻 \\\" &  FORMAT([Variação Receita (%)], \\\"0.00%\\\")\\r\\n)\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Receita\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Receita ano anterior\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Variação Receita (%)\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"G\",\"format\":\"General\",\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas indicador\"},{\"name\":\"custo ano anterior\",\"dataType\":3,\"expression\":\"CALCULATE(\\r\\n                                  [Custos],\\r\\n                                  SAMEPERIODLASTYEAR(dim_date[Date]))\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Custos\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"G\",\"format\":\"General\",\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas  ano anterior\"},{\"name\":\"Indicador custo\",\"dataType\":3,\"expression\":\"\\r\\nIF(\\r\\n     [Custos] > [custo ano anterior],\\r\\n    \\\"🟢 \\\" & FORMAT([Variação custo (%)],  \\\"0.00%\\\"), \\r\\n    \\\"🔻 \\\" & FORMAT([Variação custo (%)],  \\\"0.00%\\\")\\r\\n)\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Custos\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"custo ano anterior\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Variação custo (%)\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"G\",\"format\":\"General\",\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas indicador\"},{\"name\":\"Variação custo (%)\",\"dataType\":3,\"expression\":\"\\r\\nDIVIDE(\\r\\n        ([Custos])-[custo ano anterior],\\r\\n    [custo ano anterior],\\r\\n    0\\r\\n)\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Custos\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"custo ano anterior\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"G\",\"format\":\"General\",\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas variação\"},{\"name\":\"despesas ano anterior\",\"dataType\":3,\"expression\":\"CALCULATE(\\r\\n                                  [Despesas],\\r\\n                                  SAMEPERIODLASTYEAR(dim_date[Date]))\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Despesas\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"G\",\"format\":\"General\",\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas  ano anterior\"},{\"name\":\"Variação despesas (%)\",\"dataType\":3,\"expression\":\"\\r\\nDIVIDE(\\r\\n        ([Despesas])-[despesas ano anterior],\\r\\n    [despesas ano anterior],\\r\\n    0\\r\\n)\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Despesas\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"despesas ano anterior\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"G\",\"format\":\"General\",\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas variação\"},{\"name\":\"Indicador despesas\",\"dataType\":3,\"expression\":\"\\r\\nIF(\\r\\n     [Despesas] > [despesas ano anterior],\\r\\n    \\\"🟢 \\\" &  FORMAT([Variação despesas (%)], \\\"0.00%\\\"), \\r\\n    \\\"🔻 \\\" &  FORMAT([Variação despesas (%)], \\\"0.00%\\\"))\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Despesas\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"despesas ano anterior\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Variação despesas (%)\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"G\",\"format\":\"General\",\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas indicador\"},{\"name\":\"lucro ano anterior\",\"dataType\":3,\"expression\":\"CALCULATE(\\r\\n                                  [Lucro],\\r\\n                                  SAMEPERIODLASTYEAR(dim_date[Date]))\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Lucro\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"G\",\"format\":\"General\",\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas  ano anterior\"},{\"name\":\"Indicador lucro\",\"dataType\":3,\"expression\":\"\\r\\nIF(\\r\\n     [Lucro] > [lucro ano anterior],\\r\\n    \\\"🟢 \\\" & FORMAT([Lucro %],  \\\"0.00%\\\"), \\r\\n    \\\"🔻 \\\" & FORMAT([Lucro %],  \\\"0.00%\\\")\\r\\n)\",\"errorMessage\":null,\"hidden\":false,\"references\":{\"unrecognizedReferences\":false,\"measures\":[{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Lucro\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"lucro ano anterior\"},{\"schema\":\"extension\",\"entity\":\"fato_recebimentos\",\"name\":\"Lucro %\"}]},\"formulaOverride\":null,\"formatInformation\":{\"formatString\":\"G\",\"format\":\"General\",\"thousandSeparator\":false,\"currencyFormat\":null,\"dateTimeCustomFormat\":null},\"displayFolder\":\"medidas indicador\"}]}]}],\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "publicCustomVisuals": [
+    "PBI_CV_25997FEB_F466_44FA_B562_AC4063283C4C"
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "Layout_Download6800083026682553.svg",
+            "path": "Layout_Download6800083026682553.svg",
+            "type": 100
+          },
+          {
+            "name": "Layout_Download_(1)9532917587263232.svg",
+            "path": "Layout_Download_(1)9532917587263232.svg",
+            "type": 100
+          },
+          {
+            "name": "lampada1965098892107635.png",
+            "path": "lampada1965098892107635.png",
+            "type": 100
+          },
+          {
+            "name": "lampada6365386322911517.png",
+            "path": "lampada6365386322911517.png",
+            "type": 100
+          },
+          {
+            "name": "lampada8465970571090538.png",
+            "path": "lampada8465970571090538.png",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"outspace\":[{\"properties\":{\"image\":{\"image\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Layout Download (1).svg'\"}}},\"url\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"Layout_Download_(1)9532917587263232.svg\"}}},\"scaling\":{\"expr\":{\"Literal\":{\"Value\":\"'Fit'\"}}}}}}}]},\"visibility\":1}",
+      "displayName": "Detalhamento",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "6fdcdec0c8cb7f22f44d",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"047afc4fd09075ce6549\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1039.6009975062343,\"y\":101.44638403990025,\"z\":21000,\"width\":68.22942643391521,\"height\":30.52369077306733,\"tabOrder\":19000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Lucro\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"10.5pt\",\"color\":\"#b3b3b3\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 30.52,
+          "width": 68.23,
+          "x": 1039.60,
+          "y": 101.45,
+          "z": 21000.00
+        },
+        {
+          "config": "{\"name\":\"0986b3af51aa51f13ce2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1110.5236907730673,\"y\":45.785536159600994,\"z\":0,\"width\":120.29925187032418,\"height\":43.99002493765586,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"dim_date.FiscalYear\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"FiscalYear\"},\"Name\":\"dim_date.FiscalYear\",\"NativeReferenceName\":\"Ano\"}]},\"columnProperties\":{\"dim_date.FiscalYear\":{\"displayName\":\"Ano\"}},\"syncGroup\":{\"groupName\":\"FiscalYear\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"FiscalYear\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"2018L\"}}]]}}}]}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[{\"name\":\"b61a56830ff8401efeed\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"dim_date\"}},\"Property\":\"FiscalYear\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"FiscalYear\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 43.99,
+          "width": 120.30,
+          "x": 1110.52,
+          "y": 45.79,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"0a6a9e96c55f8c362961\",\"layouts\":[{\"id\":0,\"position\":{\"x\":72.71820448877806,\"y\":297.1571072319202,\"z\":4000,\"width\":158.00498753117208,\"height\":376.15960099750623,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"  Houve meses com  prejuízo, especialmente em \",\"textStyle\":{\"fontSize\":\"9pt\",\"color\":\"#ffffff\"}},{\"value\":\"abril \",\"textStyle\":{\"fontWeight\":\"bold\",\"color\":\"#ffffff\"}},{\"value\":\"e \",\"textStyle\":{\"fontSize\":\"9pt\",\"color\":\"#ffffff\"}},{\"value\":\"junho\",\"textStyle\":{\"fontWeight\":\"bold\",\"color\":\"#ffffff\"}},{\"value\":\". É crucial investigar as causas dessas perdas para evitar que se repitam.\",\"textStyle\":{\"fontSize\":\"9pt\",\"color\":\"#ffffff\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\" O mês de  \",\"textStyle\":{\"fontSize\":\"9pt\",\"color\":\"#ffffff\"}},{\"value\":\"dezembro \",\"textStyle\":{\"fontWeight\":\"bold\",\"color\":\"#ffffff\"}},{\"value\":\"apresentou um resultado específico positivo. \",\"textStyle\":{\"fontSize\":\"9pt\",\"color\":\"#ffffff\"}},{\"value\":\"o que pode ser resultado de uma ação específica ou de um fator externo favorável. \",\"textStyle\":{\"color\":\"#ffffff\"}}]},{\"textRuns\":[{\"value\":\"\"}]},{\"textRuns\":[{\"value\":\"É importante entender o motivo desse pico para replicá-lo em outros períodos.\",\"textStyle\":{\"color\":\"#ffffff\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 376.16,
+          "width": 158.00,
+          "x": 72.72,
+          "y": 297.16,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"2921a0aab8bd9c2c06a2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1012.6683291770573,\"y\":56.55860349127182,\"z\":5000,\"width\":123.89027431421447,\"height\":33.21695760598504,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Ano selecionado:\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 33.22,
+          "width": 123.89,
+          "x": 1012.67,
+          "y": 56.56,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"4a643f94763d8607406b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":290.8728179551122,\"y\":106.83291770573565,\"z\":14000,\"width\":100.54862842892767,\"height\":32.31920199501247,\"tabOrder\":14000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Receita\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"10.5pt\",\"color\":\"#b3b3b3\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.32,
+          "width": 100.55,
+          "x": 290.87,
+          "y": 106.83,
+          "z": 14000.00
+        },
+        {
+          "config": "{\"name\":\"4c31012dc4745207a701\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1031.5211970074813,\"y\":122.09476309226932,\"z\":9000,\"width\":122.99251870324188,\"height\":55.66084788029925,\"tabOrder\":9000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Lucro\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Lucro\"},\"Name\":\"fato_recebimentos.Lucro\",\"NativeReferenceName\":\"Lucro\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 55.66,
+          "width": 122.99,
+          "x": 1031.52,
+          "y": 122.09,
+          "z": 9000.00
+        },
+        {
+          "config": "{\"name\":\"51107c6008eeba59700a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":867.2319201995012,\"y\":157.1072319201995,\"z\":20000,\"width\":79.9002493765586,\"height\":43.99002493765586,\"tabOrder\":22000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Indicador despesas\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Indicador despesas\"},\"Name\":\"fato_recebimentos.Indicador despesas\",\"NativeReferenceName\":\"Indicador despesas\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}],\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"48D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":4,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"100D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#14D159'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"33D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"48D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#DDDD18'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"33D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#a1343c'\"}}}]}}}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 43.99,
+          "width": 79.90,
+          "x": 867.23,
+          "y": 157.11,
+          "z": 20000.00
+        },
+        {
+          "config": "{\"name\":\"5472c8932c6240325cb0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":521.5960099750623,\"y\":121.19700748129675,\"z\":10000,\"width\":137.356608478803,\"height\":53.86533665835411,\"tabOrder\":10000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Custos\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Custos\"},\"Name\":\"fato_recebimentos.Custos\",\"NativeReferenceName\":\"Custos\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 53.87,
+          "width": 137.36,
+          "x": 521.60,
+          "y": 121.20,
+          "z": 10000.00
+        },
+        {
+          "config": "{\"name\":\"6294c8660185102c04d7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":785.5361596009975,\"y\":106.83291770573565,\"z\":18000,\"width\":88.87780548628429,\"height\":33.21695760598504,\"tabOrder\":17000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Despesas\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"10.5pt\",\"color\":\"#b3b3b3\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 33.22,
+          "width": 88.88,
+          "x": 785.54,
+          "y": 106.83,
+          "z": 18000.00
+        },
+        {
+          "config": "{\"name\":\"6657f9ffe001d4bae19c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":792.718204488778,\"y\":161.59600997506234,\"z\":19000,\"width\":96.9576059850374,\"height\":35.910224438902745,\"tabOrder\":18000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Ano anterior:\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 35.91,
+          "width": 96.96,
+          "x": 792.72,
+          "y": 161.60,
+          "z": 19000.00
+        },
+        {
+          "config": "{\"name\":\"7526f0a761305e950595\",\"layouts\":[{\"id\":0,\"position\":{\"x\":774.7630922693266,\"y\":123.89027431421447,\"z\":11000,\"width\":132.86783042394015,\"height\":50.274314214463836,\"tabOrder\":11000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Despesas\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Despesas\"},\"Name\":\"fato_recebimentos.Despesas\",\"NativeReferenceName\":\"Despesas\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 50.27,
+          "width": 132.87,
+          "x": 774.76,
+          "y": 123.89,
+          "z": 11000.00
+        },
+        {
+          "config": "{\"name\":\"787095ee4c0209c2e9d6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":290.8728179551122,\"y\":131.97007481296757,\"z\":8000,\"width\":116.70822942643392,\"height\":42.19451371571072,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Receita\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"},\"Name\":\"fato_recebimentos.Receita\",\"NativeReferenceName\":\"Receita\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 42.19,
+          "width": 116.71,
+          "x": 290.87,
+          "y": 131.97,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"951fad8f9b9eb18d9d46\",\"layouts\":[{\"id\":0,\"position\":{\"x\":254.96259351620947,\"y\":217.2568578553616,\"z\":1000,\"width\":959.7007481296757,\"height\":206.48379052369077,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"waterfallChart\",\"projections\":{\"Category\":[{\"queryRef\":\"dim_date.MonthShortName\",\"active\":true}],\"Y\":[{\"queryRef\":\"fato_recebimentos.Lucro\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MonthShortName\"},\"Name\":\"dim_date.MonthShortName\",\"NativeReferenceName\":\"MonthShortName\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Lucro\"},\"Name\":\"fato_recebimentos.Lucro\",\"NativeReferenceName\":\"Lucro\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"legend\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"categoryAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"valueAxis\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"sentimentColors\":[{\"properties\":{\"totalFill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#EBAC5B'\"}}}}},\"increaseFill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#172774'\"}}}}},\"decreaseFill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#AF90EB'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Lucro por Mês'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}],\"visualHeader\":[{\"properties\":{\"showSmartNarrativeButton\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 206.48,
+          "width": 959.70,
+          "x": 254.96,
+          "y": 217.26,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"a5ebe2701c44ca45d0a5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1039.6009975062343,\"y\":160.69825436408976,\"z\":22000,\"width\":102.34413965087282,\"height\":36.80798004987531,\"tabOrder\":20000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Ano anterior:\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 36.81,
+          "width": 102.34,
+          "x": 1039.60,
+          "y": 160.70,
+          "z": 22000.00
+        },
+        {
+          "config": "{\"name\":\"ae24612672c9179904b1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":536.857855361596,\"y\":165.1870324189526,\"z\":15000,\"width\":103.24189526184539,\"height\":27.830423940149625,\"tabOrder\":15000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Ano anterior:\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 27.83,
+          "width": 103.24,
+          "x": 536.86,
+          "y": 165.19,
+          "z": 15000.00
+        },
+        {
+          "config": "{\"name\":\"ae36d8201b7701d178ba\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1107.8304239401496,\"y\":149.92518703241896,\"z\":23000,\"width\":93.36658354114712,\"height\":57.456359102244384,\"tabOrder\":23000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Indicador lucro\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Indicador lucro\"},\"Name\":\"fato_recebimentos.Indicador lucro\",\"NativeReferenceName\":\"Indicador lucro\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 57.46,
+          "width": 93.37,
+          "x": 1107.83,
+          "y": 149.93,
+          "z": 23000.00
+        },
+        {
+          "config": "{\"name\":\"afec411f44732065d764\",\"layouts\":[{\"id\":0,\"position\":{\"x\":73.61596009975062,\"y\":266.6334164588529,\"z\":7000,\"width\":157.1072319201995,\"height\":37.70573566084788,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Resumo Executivo\",\"textStyle\":{\"fontFamily\":\"Segoe (Bold)\",\"fontSize\":\"11pt\",\"color\":\"#ffffff\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 37.71,
+          "width": 157.11,
+          "x": 73.62,
+          "y": 266.63,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"bb79773c0003b252257a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":196.60847880299252,\"y\":264.8379052369077,\"z\":6000,\"width\":34.114713216957604,\"height\":32.31920199501247,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"lampada1965098892107635.png\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 32.32,
+          "width": 34.11,
+          "x": 196.61,
+          "y": 264.84,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"bbb0652f9ac9748931a8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":290.8728179551122,\"y\":161.59600997506234,\"z\":13000,\"width\":116.70822942643392,\"height\":45.785536159600994,\"tabOrder\":13000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Ano anterior:\",\"textStyle\":{\"color\":\"#666666\"}}]},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 45.79,
+          "width": 116.71,
+          "x": 290.87,
+          "y": 161.60,
+          "z": 13000.00
+        },
+        {
+          "config": "{\"name\":\"c0486e1e9b034f96519f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":242.3940149625935,\"y\":444.3890274314214,\"z\":2000,\"width\":988.428927680798,\"height\":228.92768079800499,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Receita\"},{\"queryRef\":\"fato_recebimentos.Custos\"},{\"queryRef\":\"fato_recebimentos.Margem Bruta\"},{\"queryRef\":\"fato_recebimentos.Despesas\"},{\"queryRef\":\"fato_recebimentos.Lucro\"},{\"queryRef\":\"fato_recebimentos.Lucro %\"}],\"Columns\":[{\"queryRef\":\"dim_date.MonthShortName\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"},\"Name\":\"fato_recebimentos.Receita\",\"NativeReferenceName\":\"Receita\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Custos\"},\"Name\":\"fato_recebimentos.Custos\",\"NativeReferenceName\":\"Custos\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Margem Bruta\"},\"Name\":\"fato_recebimentos.Margem Bruta\",\"NativeReferenceName\":\"Margem Bruta\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Despesas\"},\"Name\":\"fato_recebimentos.Despesas\",\"NativeReferenceName\":\"Despesas\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Lucro\"},\"Name\":\"fato_recebimentos.Lucro\",\"NativeReferenceName\":\"Lucro\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MonthShortName\"},\"Name\":\"dim_date.MonthShortName\",\"NativeReferenceName\":\"MonthShortName\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Lucro %\"},\"Name\":\"fato_recebimentos.Lucro %\",\"NativeReferenceName\":\"Lucro %\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"values\":[{\"properties\":{\"valuesOnRow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontColorPrimary\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":-0.5}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'wf_standard-font, helvetica, arial, sans-serif'\"}}},\"backColorPrimary\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F2F0F6'\"}}}}},\"fontColorSecondary\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":-0.5}}}}},\"backColorSecondary\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FDFDFF'\"}}}}},\"wordWrap\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}},{\"properties\":{},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}],\"metadata\":\"fato_recebimentos.Lucro %\"}},{\"properties\":{\"icon\":{\"kind\":\"Icon\",\"layout\":{\"expr\":{\"Literal\":{\"Value\":\"'Before'\"}}},\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}},\"value\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Lucro %\"}},\"Right\":{\"Literal\":{\"Value\":\"0.1D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":4,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Lucro %\"}},\"Right\":{\"Literal\":{\"Value\":\"100D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'CircleHigh'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Lucro %\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Lucro %\"}},\"Right\":{\"Literal\":{\"Value\":\"0.1D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'SignMedium'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Lucro %\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'SignLow'\"}}}]}}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":0}}],\"metadata\":\"fato_recebimentos.Lucro %\"}}],\"grid\":[{\"properties\":{\"gridHorizontal\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"gridHorizontalWeight\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"gridVertical\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"rowPadding\":{\"expr\":{\"Literal\":{\"Value\":\"7D\"}}},\"gridVerticalWeight\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"outlineColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#AF90EB'\"}}}}},\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"outlineWeight\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"columnTotal\":[{\"properties\":{\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"columnHeaders\":[{\"properties\":{\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Center'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'wf_standard-font, helvetica, arial, sans-serif'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"rowHeaders\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'wf_standard-font, helvetica, arial, sans-serif'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"59.952819853910086D\"}}}},\"selector\":{\"metadata\":\"fato_recebimentos.Receita\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"77.40897658441152D\"}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"dim_date\"}},\"Property\":\"MonthShortName\"}},\"Right\":{\"Literal\":{\"Value\":\"'Oct'\"}}}}}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 228.93,
+          "width": 988.43,
+          "x": 242.39,
+          "y": 444.39,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"d8f94d0a137cfda6372e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":72.71820448877806,\"y\":138.25436408977555,\"z\":3000,\"width\":114.0149625935162,\"height\":40.399002493765586,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'blank'\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"outline\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'PageNavigation'\"}}},\"navigationSection\":{\"expr\":{\"Literal\":{\"Value\":\"'8498295f7a5e2bc97b0f'\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 40.40,
+          "width": 114.01,
+          "x": 72.72,
+          "y": 138.25,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"e1f8bfb327d2ecb93112\",\"layouts\":[{\"id\":0,\"position\":{\"x\":349.22693266832914,\"y\":165.1870324189526,\"z\":12000,\"width\":107.73067331670822,\"height\":31.4214463840399,\"tabOrder\":12000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Indicador Receita\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Indicador Receita\"},\"Name\":\"fato_recebimentos.Indicador Receita\",\"NativeReferenceName\":\"Receita\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Indicador Receita\"}}}]},\"columnProperties\":{\"fato_recebimentos.Indicador Receita\":{\"displayName\":\"Receita\",\"formatString\":\"G\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador Receita\"}},\"Right\":{\"Literal\":{\"Value\":\"0.1D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#05F99B'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador Receita\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador Receita\"}},\"Right\":{\"Literal\":{\"Value\":\"0.1D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#D9B300'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador Receita\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#D64550'\"}}}]}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"visualTooltip\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 31.42,
+          "width": 107.73,
+          "x": 349.23,
+          "y": 165.19,
+          "z": 12000.00
+        },
+        {
+          "config": "{\"name\":\"ea1bca51bea35846a03e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":601.4962593516209,\"y\":166.0847880299252,\"z\":16000,\"width\":91.57107231920199,\"height\":31.4214463840399,\"tabOrder\":21000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Indicador custo\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Indicador custo\"},\"Name\":\"fato_recebimentos.Indicador custo\",\"NativeReferenceName\":\"Indicador custo\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"48D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":4,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"100D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#14D159'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"33D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"48D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#DDDD18'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"33D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#a1343c'\"}}}]}}}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 31.42,
+          "width": 91.57,
+          "x": 601.50,
+          "y": 166.08,
+          "z": 16000.00
+        },
+        {
+          "config": "{\"name\":\"f64aca5d0d8b80d98874\",\"layouts\":[{\"id\":0,\"position\":{\"x\":536.857855361596,\"y\":103.24189526184539,\"z\":17000,\"width\":64.63840399002494,\"height\":39.50124688279302,\"tabOrder\":16000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Custo\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"10.5pt\",\"color\":\"#b3b3b3\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 39.50,
+          "width": 64.64,
+          "x": 536.86,
+          "y": 103.24,
+          "z": 17000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"objects\":{\"outspace\":[{\"properties\":{\"image\":{\"image\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'Layout Download.svg'\"}}},\"url\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"Layout_Download6800083026682553.svg\"}}},\"scaling\":{\"expr\":{\"Literal\":{\"Value\":\"'Fit'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}",
+      "displayName": "Visão Geral",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "8498295f7a5e2bc97b0f",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0a8c38f0eeb7b286f699\",\"layouts\":[{\"id\":0,\"position\":{\"x\":72.71820448877806,\"y\":386.93266832917703,\"z\":11000,\"width\":158.00498753117208,\"height\":145.4364089775561,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\" \",\"textStyle\":{\"fontSize\":\"9pt\"}},{\"value\":\"Agosto \",\"textStyle\":{\"fontWeight\":\"bold\",\"color\":\"#f2f0f6\"}},{\"value\":\"teve a menor saída variável (21%), indicando maior estabilidade nos custos variáveis.\",\"textStyle\":{\"fontSize\":\"9pt\",\"color\":\"#f2f0f6\"}}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"general\":[{\"properties\":{\"keepLayerOrder\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 145.44,
+          "width": 158.00,
+          "x": 72.72,
+          "y": 386.93,
+          "z": 11000.00
+        },
+        {
+          "config": "{\"name\":\"0c4596f9948e1843030b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":284.5885286783042,\"y\":161.59600997506234,\"z\":18000,\"width\":116.70822942643392,\"height\":45.785536159600994,\"tabOrder\":17000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Ano anterior:\",\"textStyle\":{\"color\":\"#666666\"}}]},{\"textRuns\":[{\"value\":\"\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 45.79,
+          "width": 116.71,
+          "x": 284.59,
+          "y": 161.60,
+          "z": 18000.00
+        },
+        {
+          "config": "{\"name\":\"16bb267e535c67d6c513\",\"layouts\":[{\"id\":0,\"position\":{\"x\":595.2119700748129,\"y\":165.1870324189526,\"z\":21000,\"width\":91.57107231920199,\"height\":31.4214463840399,\"tabOrder\":26000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Indicador custo\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Indicador custo\"},\"Name\":\"fato_recebimentos.Indicador custo\",\"NativeReferenceName\":\"Indicador custo\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"48D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":4,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"100D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#14D159'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"33D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"48D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#DDDD18'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"33D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#a1343c'\"}}}]}}}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 31.42,
+          "width": 91.57,
+          "x": 595.21,
+          "y": 165.19,
+          "z": 21000.00
+        },
+        {
+          "config": "{\"name\":\"1746d89632223bba3043\",\"layouts\":[{\"id\":0,\"position\":{\"x\":931.8703241895262,\"y\":219.9501246882793,\"z\":8000,\"width\":289.97506234413964,\"height\":454.2643391521197,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"barChart\",\"projections\":{\"Y\":[{\"queryRef\":\"fato_recebimentos.Receita\"}],\"Category\":[{\"queryRef\":\"fato_recebimentos.cliente\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0},{\"Name\":\"f1\",\"Entity\":\"fato_recebimentos\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"},\"Name\":\"fato_recebimentos.Receita\",\"NativeReferenceName\":\"Receita\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f1\"}},\"Property\":\"cliente\"},\"Name\":\"fato_recebimentos.cliente\",\"NativeReferenceName\":\"cliente\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"valueAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#172774'\"}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Top 5  cliente  por Receita'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[{\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"fato_recebimentos\"}},\"Property\":\"cliente\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"subquery\",\"Expression\":{\"Subquery\":{\"Query\":{\"Version\":2,\"From\":[{\"Name\":\"f1\",\"Entity\":\"fato_recebimentos\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f1\"}},\"Property\":\"cliente\"},\"Name\":\"field\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"}}}],\"Top\":5}}},\"Type\":2},{\"Name\":\"f1\",\"Entity\":\"fato_recebimentos\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f1\"}},\"Property\":\"cliente\"}}],\"Table\":{\"SourceRef\":{\"Source\":\"subquery\"}}}}}]},\"type\":\"TopN\",\"howCreated\":0,\"isHiddenInViewMode\":false}]",
+          "height": 454.26,
+          "width": 289.98,
+          "x": 931.87,
+          "y": 219.95,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"1b1f8bb7dd79408a333c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":72.71820448877806,\"y\":237.0074812967581,\"z\":16000,\"width\":149.92518703241896,\"height\":40.399002493765586,\"tabOrder\":15000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Resumo Executivo\",\"textStyle\":{\"fontFamily\":\"Segoe (Bold)\",\"fontSize\":\"11pt\",\"color\":\"#ffffff\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 40.40,
+          "width": 149.93,
+          "x": 72.72,
+          "y": 237.01,
+          "z": 16000.00
+        },
+        {
+          "config": "{\"name\":\"21ef2a11c2d366800160\",\"layouts\":[{\"id\":0,\"position\":{\"x\":787.3316708229427,\"y\":161.59600997506234,\"z\":24000,\"width\":96.05985037406484,\"height\":35.910224438902745,\"tabOrder\":23000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Ano anterior:\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 35.91,
+          "width": 96.06,
+          "x": 787.33,
+          "y": 161.60,
+          "z": 24000.00
+        },
+        {
+          "config": "{\"name\":\"2c3963a9ec359ebab902\",\"layouts\":[{\"id\":0,\"position\":{\"x\":192.11970074812967,\"y\":386.93266832917703,\"z\":15000,\"width\":30.52369077306733,\"height\":28.728179551122192,\"tabOrder\":14000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"lampada6365386322911517.png\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 28.73,
+          "width": 30.52,
+          "x": 192.12,
+          "y": 386.93,
+          "z": 15000.00
+        },
+        {
+          "config": "{\"name\":\"2f16a80a06c8582c2ac4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":530.573566084788,\"y\":103.24189526184539,\"z\":22000,\"width\":64.63840399002494,\"height\":39.50124688279302,\"tabOrder\":21000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Custo\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"10.5pt\",\"color\":\"#b3b3b3\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 39.50,
+          "width": 64.64,
+          "x": 530.57,
+          "y": 103.24,
+          "z": 22000.00
+        },
+        {
+          "config": "{\"name\":\"316fa3cb769a89a16c10\",\"layouts\":[{\"id\":0,\"position\":{\"x\":773.8653366583541,\"y\":124.78802992518703,\"z\":3000,\"width\":123.89027431421447,\"height\":40.399002493765586,\"tabOrder\":11000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Despesas\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Despesas\"},\"Name\":\"fato_recebimentos.Despesas\",\"NativeReferenceName\":\"Despesas\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 40.40,
+          "width": 123.89,
+          "x": 773.87,
+          "y": 124.79,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"34df7f8f1cdecb604721\",\"layouts\":[{\"id\":0,\"position\":{\"x\":783.7406483790523,\"y\":101.44638403990025,\"z\":23000,\"width\":81.69576059850374,\"height\":33.21695760598504,\"tabOrder\":22000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Despesas\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"10.5pt\",\"color\":\"#b3b3b3\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 33.22,
+          "width": 81.70,
+          "x": 783.74,
+          "y": 101.45,
+          "z": 23000.00
+        },
+        {
+          "config": "{\"name\":\"3eea06b38214609e1a8d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":530.573566084788,\"y\":165.1870324189526,\"z\":20000,\"width\":103.24189526184539,\"height\":27.830423940149625,\"tabOrder\":20000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Ano anterior:\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 27.83,
+          "width": 103.24,
+          "x": 530.57,
+          "y": 165.19,
+          "z": 20000.00
+        },
+        {
+          "config": "{\"name\":\"41e870cea8ec1e408033\",\"layouts\":[{\"id\":0,\"position\":{\"x\":193.9152119700748,\"y\":227.13216957605985,\"z\":14000,\"width\":28.728179551122192,\"height\":36.80798004987531,\"tabOrder\":13000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"lampada8465970571090538.png\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 36.81,
+          "width": 28.73,
+          "x": 193.92,
+          "y": 227.13,
+          "z": 14000.00
+        },
+        {
+          "config": "{\"name\":\"49bcd0111541aad633e3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1082.6932668329177,\"y\":48.4788029925187,\"z\":9000,\"width\":139.15211970074813,\"height\":52.96758104738154,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"dim_date.FiscalYear\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"FiscalYear\"},\"Name\":\"dim_date.FiscalYear\",\"NativeReferenceName\":\"Ano\"}]},\"columnProperties\":{\"dim_date.FiscalYear\":{\"displayName\":\"Ano\"}},\"syncGroup\":{\"groupName\":\"FiscalYear\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"FiscalYear\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"2018L\"}}]]}}}]}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[{\"name\":\"b61a56830ff8401efeed\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"dim_date\"}},\"Property\":\"FiscalYear\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"FiscalYear\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 52.97,
+          "width": 139.15,
+          "x": 1082.69,
+          "y": 48.48,
+          "z": 9000.00
+        },
+        {
+          "config": "{\"name\":\"49ec5ee6c40b80b469de\",\"layouts\":[{\"id\":0,\"position\":{\"x\":341.147132169576,\"y\":161.59600997506234,\"z\":17000,\"width\":107.73067331670822,\"height\":31.4214463840399,\"tabOrder\":16000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Indicador Receita\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Indicador Receita\"},\"Name\":\"fato_recebimentos.Indicador Receita\",\"NativeReferenceName\":\"Receita\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Indicador Receita\"}}}]},\"columnProperties\":{\"fato_recebimentos.Indicador Receita\":{\"displayName\":\"Receita\",\"formatString\":\"G\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador Receita\"}},\"Right\":{\"Literal\":{\"Value\":\"0.1D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#05F99B'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador Receita\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador Receita\"}},\"Right\":{\"Literal\":{\"Value\":\"0.1D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#D9B300'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador Receita\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#D64550'\"}}}]}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"visualTooltip\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 31.42,
+          "width": 107.73,
+          "x": 341.15,
+          "y": 161.60,
+          "z": 17000.00
+        },
+        {
+          "config": "{\"name\":\"5205eae13279bd436eda\",\"layouts\":[{\"id\":0,\"position\":{\"x\":252.26932668329175,\"y\":459.6508728179551,\"z\":5000,\"width\":498.25436408977555,\"height\":204.68827930174564,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"hundredPercentStackedColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"dim_date.MonthShortName\",\"active\":true}],\"Y\":[{\"queryRef\":\"fato_recebimentos.Saídas\"}],\"Series\":[{\"queryRef\":\"dim_plano_contas.tipo\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"dim_plano_contas\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MonthShortName\"},\"Name\":\"dim_date.MonthShortName\",\"NativeReferenceName\":\"MonthShortName\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Saídas\"},\"Name\":\"fato_recebimentos.Saídas\",\"NativeReferenceName\":\"Saídas\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"tipo\"},\"Name\":\"dim_plano_contas.tipo\",\"NativeReferenceName\":\"tipo\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MonthShortName\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"valueAxis\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"enableValueDataLabel\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"labelOverflow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"optimizeLabelDisplay\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"detailLabelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"legend\":[{\"properties\":{\"showGradientLegend\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"showTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#AF90EB'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"dim_plano_contas\"}},\"Property\":\"tipo\"}},\"Right\":{\"Literal\":{\"Value\":\"'Variável'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#C9CED9'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"dim_plano_contas\"}},\"Property\":\"tipo\"}},\"Right\":{\"Literal\":{\"Value\":\"'Fixo'\"}}}}}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Saída por Mês'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 204.69,
+          "width": 498.25,
+          "x": 252.27,
+          "y": 459.65,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"5df047a15acc10a134dc\",\"layouts\":[{\"id\":0,\"position\":{\"x\":64.63840399002494,\"y\":185.8354114713217,\"z\":13000,\"width\":113.11720698254364,\"height\":34.114713216957604,\"tabOrder\":19000}}],\"singleVisual\":{\"visualType\":\"actionButton\",\"drillFilterOtherVisuals\":true,\"objects\":{\"icon\":[{\"properties\":{\"shapeType\":{\"expr\":{\"Literal\":{\"Value\":\"'blank'\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"outline\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"visualLink\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"type\":{\"expr\":{\"Literal\":{\"Value\":\"'PageNavigation'\"}}},\"navigationSection\":{\"expr\":{\"Literal\":{\"Value\":\"'6fdcdec0c8cb7f22f44d'\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 34.11,
+          "width": 113.12,
+          "x": 64.64,
+          "y": 185.84,
+          "z": 13000.00
+        },
+        {
+          "config": "{\"name\":\"60317e3eb97e50c04369\",\"layouts\":[{\"id\":0,\"position\":{\"x\":839.4014962593516,\"y\":162.4937655860349,\"z\":25000,\"width\":115.81047381546134,\"height\":35.01246882793017,\"tabOrder\":27000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Indicador despesas\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Indicador despesas\"},\"Name\":\"fato_recebimentos.Indicador despesas\",\"NativeReferenceName\":\"Indicador despesas\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}],\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"48D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":4,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"100D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#14D159'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"33D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"48D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#DDDD18'\"}}},{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Schema\":\"extension\",\"Entity\":\"fato_recebimentos\"}},\"Property\":\"Indicador custo\"}},\"Right\":{\"Literal\":{\"Value\":\"33D\"}}}}}},\"Value\":{\"Literal\":{\"Value\":\"'#a1343c'\"}}}]}}}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 35.01,
+          "width": 115.81,
+          "x": 839.40,
+          "y": 162.49,
+          "z": 25000.00
+        },
+        {
+          "config": "{\"name\":\"6f3879c95e474f115bc2\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1014.4638403990025,\"y\":116.70822942643392,\"z\":1000,\"width\":151.7206982543641,\"height\":60.14962593516209,\"tabOrder\":9000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Lucro\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Lucro\"},\"Name\":\"fato_recebimentos.Lucro\",\"NativeReferenceName\":\"Lucro\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 60.15,
+          "width": 151.72,
+          "x": 1014.46,
+          "y": 116.71,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"9239a376dbf0c6bed49a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":258.55361596009976,\"y\":219.9501246882793,\"z\":4000,\"width\":462.3441396508728,\"height\":205.5860349127182,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"dim_date.MonthShortName\",\"active\":true}],\"Y\":[{\"queryRef\":\"fato_recebimentos.Receita ano anterior\"},{\"queryRef\":\"fato_recebimentos.Receita\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_date\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MonthShortName\"},\"Name\":\"dim_date.MonthShortName\",\"NativeReferenceName\":\"MonthShortName\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"},\"Name\":\"fato_recebimentos.Receita\",\"NativeReferenceName\":\"Ano selecionado\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita ano anterior\"},\"Name\":\"fato_recebimentos.Receita ano anterior\",\"NativeReferenceName\":\"Ano anterior\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"MonthShortName\"}}}]},\"columnProperties\":{\"fato_recebimentos.Receita ano anterior\":{\"displayName\":\"Ano anterior\"},\"fato_recebimentos.Receita\":{\"displayName\":\"Ano selecionado\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"valueAxis\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"gridlineShow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"legend\":[{\"properties\":{\"showTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#172774'\"}}}}}},\"selector\":{\"metadata\":\"fato_recebimentos.Receita\"}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#7982AC'\"}}}}}},\"selector\":{\"metadata\":\"fato_recebimentos.Receita ano anterior\"}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Receita ao longo do tempo'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 205.59,
+          "width": 462.34,
+          "x": 258.55,
+          "y": 219.95,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"9ca5375bb601a8737db3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":977.6558603491271,\"y\":56.55860349127182,\"z\":12000,\"width\":122.99251870324188,\"height\":37.70573566084788,\"tabOrder\":12000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Ano selecionado:\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 37.71,
+          "width": 122.99,
+          "x": 977.66,
+          "y": 56.56,
+          "z": 12000.00
+        },
+        {
+          "config": "{\"name\":\"b90d00e2c7a995c03578\",\"layouts\":[{\"id\":0,\"position\":{\"x\":72.71820448877806,\"y\":277.4064837905237,\"z\":10000,\"width\":174.1645885286783,\"height\":192.11970074812967,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"  Comparando com o Ano  Anterior, o crescimento em  \",\"textStyle\":{\"fontSize\":\"9pt\",\"color\":\"#ffffff\"}},{\"value\":\"Agosto \",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"9pt\",\"color\":\"#ffffff\"}},{\"value\":\"foi significativo, indicando uma mudança positiva nesse período.\",\"textStyle\":{\"fontSize\":\"9pt\",\"color\":\"#ffffff\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 192.12,
+          "width": 174.16,
+          "x": 72.72,
+          "y": 277.41,
+          "z": 10000.00
+        },
+        {
+          "config": "{\"name\":\"b9473e23054e0888063e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1107.8304239401496,\"y\":149.92518703241896,\"z\":28000,\"width\":93.36658354114712,\"height\":57.456359102244384,\"tabOrder\":28000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Indicador lucro\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Indicador lucro\"},\"Name\":\"fato_recebimentos.Indicador lucro\",\"NativeReferenceName\":\"Indicador lucro\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 57.46,
+          "width": 93.37,
+          "x": 1107.83,
+          "y": 149.93,
+          "z": 28000.00
+        },
+        {
+          "config": "{\"name\":\"c6cb2223123b97e157cd\",\"layouts\":[{\"id\":0,\"position\":{\"x\":284.5885286783042,\"y\":106.83291770573565,\"z\":19000,\"width\":100.54862842892767,\"height\":32.31920199501247,\"tabOrder\":18000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Receita\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"10.5pt\",\"color\":\"#b3b3b3\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.32,
+          "width": 100.55,
+          "x": 284.59,
+          "y": 106.83,
+          "z": 19000.00
+        },
+        {
+          "config": "{\"name\":\"ca5837ecd1cdce2dc3c6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":742.4438902743142,\"y\":447.9800498753117,\"z\":7000,\"width\":164.28927680798003,\"height\":226.23441396508727,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Y\":[{\"queryRef\":\"fato_recebimentos.Saídas\"}],\"Category\":[{\"queryRef\":\"dim_plano_contas.tipo\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"dim_plano_contas\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Saídas\"},\"Name\":\"fato_recebimentos.Saídas\",\"NativeReferenceName\":\"Saídas\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"tipo\"},\"Name\":\"dim_plano_contas.tipo\",\"NativeReferenceName\":\"tipo\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Saídas\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"legend\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}},\"showTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'Percent of total'\"}}},\"percentageLabelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#C9CED9'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"dim_plano_contas\"}},\"Property\":\"tipo\"}},\"Right\":{\"Literal\":{\"Value\":\"'Variável'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#AF90EB'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"dim_plano_contas\"}},\"Property\":\"tipo\"}},\"Right\":{\"Literal\":{\"Value\":\"'Fixo'\"}}}}}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 226.23,
+          "width": 164.29,
+          "x": 742.44,
+          "y": 447.98,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"ea10ff03c2fed98ffd96\",\"layouts\":[{\"id\":0,\"position\":{\"x\":280.99750623441395,\"y\":116.70822942643392,\"z\":0,\"width\":120.29925187032418,\"height\":65.53615960099751,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Receita\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"},\"Name\":\"fato_recebimentos.Receita\",\"NativeReferenceName\":\"Receita\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 65.54,
+          "width": 120.30,
+          "x": 281.00,
+          "y": 116.71,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"f0603cec5ccf6fde6a37\",\"layouts\":[{\"id\":0,\"position\":{\"x\":706.5336658354114,\"y\":211.87032418952617,\"z\":6000,\"width\":200.1995012468828,\"height\":213.6658354114713,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Y\":[{\"queryRef\":\"fato_recebimentos.Receita\"}],\"Category\":[{\"queryRef\":\"dim_plano_contas.conta\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"dim_plano_contas\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"},\"Name\":\"fato_recebimentos.Receita\",\"NativeReferenceName\":\"Receita\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"conta\"},\"Name\":\"dim_plano_contas.conta\",\"NativeReferenceName\":\"conta\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Receita\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"legend\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}},\"showTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}],\"labels\":[{\"properties\":{\"labelStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'Data'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#172774'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"dim_plano_contas\"}},\"Property\":\"conta\"}},\"Right\":{\"Literal\":{\"Value\":\"'Operacional'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#7982AC'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"dim_plano_contas\"}},\"Property\":\"conta\"}},\"Right\":{\"Literal\":{\"Value\":\"'Não Operacional'\"}}}}}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 213.67,
+          "width": 200.20,
+          "x": 706.53,
+          "y": 211.87,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"f415cd52ff6963d2dbaa\",\"layouts\":[{\"id\":0,\"position\":{\"x\":515.3117206982544,\"y\":122.09476309226932,\"z\":2000,\"width\":137.356608478803,\"height\":53.86533665835411,\"tabOrder\":10000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"fato_recebimentos.Custos\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fato_recebimentos\",\"Schema\":\"extension\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Custos\"},\"Name\":\"fato_recebimentos.Custos\",\"NativeReferenceName\":\"Custos\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 53.87,
+          "width": 137.36,
+          "x": 515.31,
+          "y": 122.09,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"f93179d2ca14bc6624c8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1039.6009975062343,\"y\":103.24189526184539,\"z\":26000,\"width\":68.22942643391521,\"height\":30.52369077306733,\"tabOrder\":24000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Lucro\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"10.5pt\",\"color\":\"#b3b3b3\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 30.52,
+          "width": 68.23,
+          "x": 1039.60,
+          "y": 103.24,
+          "z": 26000.00
+        },
+        {
+          "config": "{\"name\":\"ffc81c5e87a140e53465\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1039.6009975062343,\"y\":160.69825436408976,\"z\":27000,\"width\":102.34413965087282,\"height\":36.80798004987531,\"tabOrder\":25000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Ano anterior:\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 36.81,
+          "width": 102.34,
+          "x": 1039.60,
+          "y": 160.70,
+          "z": 27000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
