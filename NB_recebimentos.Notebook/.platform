@@ -1,11 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Report",
-    "displayName": "Dashboard_Financeiro"
+    "type": "Notebook",
+    "displayName": "NB_recebimentos",
+    "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "bea859b3-9e10-41af-a738-212412a00cab"
+    "logicalId": "ed30fdb9-2f63-40e7-8b31-777300b0a060"
   }
 }
