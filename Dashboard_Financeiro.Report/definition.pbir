@@ -1,14 +1,9 @@
 {
   "version": "4.0",
   "datasetReference": {
-    "byPath": null,
-    "byConnection": {
-      "connectionString": "Data Source=powerbi://api.powerbi.com/v1.0/myorg/Relatorios;Initial Catalog=sm_financeiro;Access Mode=readonly;Integrated Security=ClaimsToken",
-      "pbiServiceModelId": null,
-      "pbiModelVirtualServerName": "sobe_wowvirtualserver",
-      "pbiModelDatabaseName": "22800a99-50fd-4dca-87ec-0796693bea6a",
-      "name": "EntityDataSource",
-      "connectionType": "pbiServiceXmlaStyleLive"
-    }
+    "byPath": {
+      "path": "../sm_financeiro.SemanticModel"
+    },
+    "byConnection": null
   }
 }

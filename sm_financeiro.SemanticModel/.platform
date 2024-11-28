@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "sm_financeiro"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "10d98d89-3171-4e42-adc7-5a52051f5e88"
+  }
+}
