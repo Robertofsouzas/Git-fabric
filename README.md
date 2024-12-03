@@ -15,13 +15,13 @@ Integração: Facilita a integração de diferentes fontes de dados.
 - Segurança: Oferece segurança robusta para proteção dos dados.
 
 # O que é o OneLake?
-_ O OneLake é um recurso do Microsoft Fabric que unifica o armazenamento de dados em um único local, simplificando o gerenciamento e acessibilidade dos dados.
+- O OneLake é um recurso do Microsoft Fabric que unifica o armazenamento de dados em um único local, simplificando o gerenciamento e acessibilidade dos dados.
 
 # O que é Lakehouse?
 - O Lakehouse combina as melhores características de data lakes e data warehouses, permitindo armazenar dados não estruturados e estruturados com capacidades de processamento analítico.
 
 # O que é Tabela Delta?
-_ A Tabela Delta é um formato de armazenamento otimizado que permite a execução de operações ACID (Atomicidade, Consistência, Isolamento, Durabilidade) em um data lake.
+- A Tabela Delta é um formato de armazenamento otimizado que permite a execução de operações ACID (Atomicidade, Consistência, Isolamento, Durabilidade) em um data lake.
 
 # Estrutura do Projeto
 ### 1. Criação dos Workspaces
