@@ -24,7 +24,7 @@ O que é Tabela Delta?
 A Tabela Delta é um formato de armazenamento otimizado que permite a execução de operações ACID (Atomicidade, Consistência, Isolamento, Durabilidade) em um data lake.
 
 # Estrutura do Projeto
-### 1 Criação dos Workspaces
+### 1. Criação dos Workspaces
 
 * Dois workspaces foram criados: Engenharia e Relatórios.
 
@@ -32,39 +32,39 @@ A Tabela Delta é um formato de armazenamento otimizado que permite a execução
 
 * O workspace Relatórios é utilizado para a criação dos relatórios no Power BI.
 
-Criação do Lakehouse
+### 2. Criação do Lakehouse
 
-Um Lakehouse foi criado no workspace Engenharia para armazenar as tabelas: dPlanoContas, dCalendario, fPagamentos e fRecebimentos.
+* Um Lakehouse foi criado no workspace Engenharia para armazenar as tabelas: dPlanoContas, dCalendario, fPagamentos e fRecebimentos.
 
-ETL com Notebook Spark
+* ETL com Notebook Spark
 
-Utilização de um notebook Spark para o tratamento da tabela fRecebimentos.
-
-Etapas do Tratamento:
-
-Leitura dos dados brutos.
-
-Limpeza e transformação dos dados.
-
-Gravação dos dados tratados na Tabela Delta.
-
-ETL com Dataflow Gen 2
-
-Utilização do Dataflow Gen 2 para o tratamento da tabela fPagamentos.
+* Utilização de um notebook Spark para o tratamento da tabela fRecebimentos.
 
 Etapas do Tratamento:
 
-Importação dos dados.
+## 3. Leitura dos dados brutos.
 
-Aplicação de transformações necessárias.
+* Limpeza e transformação dos dados.
 
-Carregamento dos dados tratados no Lakehouse.
+* Gravação dos dados tratados na Tabela Delta.
 
-Criação do Modelo Semântico
+## 4. ETL com Dataflow Gen 2
 
-Conexão do modelo semântico com o Power BI Desktop.
+* Utilização do Dataflow Gen 2 para o tratamento da tabela fPagamentos.
 
-Criação de relações entre as tabelas e definição de medidas e cálculos necessários para a análise financeira.
+## 5. Etapas do Tratamento:
+
+* Importação dos dados.
+
+* Aplicação de transformações necessárias.
+
+* Carregamento dos dados tratados no Lakehouse.
+
+* Criação do Modelo Semântico
+
+* Conexão do modelo semântico com o Power BI Desktop.
+
+* Criação de relações entre as tabelas e definição de medidas e cálculos necessários para a análise financeira.
 
 Conclusão
 Este projeto demonstra a utilização integrada do Microsoft Fabric e Power BI para o desenvolvimento de um relatório financeiro completo.
