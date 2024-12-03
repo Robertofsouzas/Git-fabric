@@ -5,13 +5,13 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 48
       },
       "nodes": [
         {
           "location": {
-            "x": 765.5819986227159,
-            "y": 131
+            "x": 503.14479716758069,
+            "y": 127.83007731428245
           },
           "nodeIndex": "dim_date",
           "nodeLineageTag": "55b13a4a-03fe-4549-8cab-8caa93557cc6",
@@ -23,8 +23,8 @@
         },
         {
           "location": {
-            "x": 0,
-            "y": 224.93273942006397
+            "x": 10,
+            "y": 346.59452843151911
           },
           "nodeIndex": "dim_plano_contas",
           "nodeLineageTag": "a9718e04-c9f0-4825-a495-d9f1a8aa5bc3",
@@ -36,8 +36,8 @@
         },
         {
           "location": {
-            "x": 381.3928476802173,
-            "y": 3.4701639579902803
+            "x": 219.00428405249932,
+            "y": -10
           },
           "nodeIndex": "fato_pagamentos",
           "nodeLineageTag": "d966643f-047d-4fcb-94c0-1c389ae3b78e",
@@ -49,13 +49,26 @@
         },
         {
           "location": {
-            "x": 380.2023984815844,
-            "y": 441.19753883282658
+            "x": 294.16777061167568,
+            "y": 478.00166735883738
           },
           "nodeIndex": "fato_recebimentos",
           "nodeLineageTag": "4c939cf6-c98a-45df-9e55-fcc0be69deb3",
           "size": {
-            "height": 200,
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 777.14479716758069,
+            "y": 342.00083367941875
+          },
+          "nodeIndex": "Atualizacao",
+          "nodeLineageTag": "de5a8658-4eb2-4728-bebb-65e986606f2e",
+          "size": {
+            "height": 104,
             "width": 234
           },
           "zIndex": 0
