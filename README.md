@@ -66,6 +66,12 @@ Etapas do Tratamento:
 
 * Criação de relações entre as tabelas e definição de medidas e cálculos necessários para a análise financeira.
 
-Conclusão
-Este projeto demonstra a utilização integrada do Microsoft Fabric e Power BI para o desenvolvimento de um relatório financeiro completo.
+# Conclusão
+
+- Este projeto demonstra a utilização integrada do Microsoft Fabric e Power BI para o desenvolvimento de um relatório financeiro completo.
 As tecnologias utilizadas proporcionam um fluxo de trabalho eficiente e seguro para o gerenciamento e análise de dados.
+
+
+
+![Relatório_Financeiro]([URL_DA_IMAGEM](https://github.com/Robertofsouzas/Git-fabric/blob/main/Relatorio_financeiro.png))
+
