@@ -1,6 +1,6 @@
-Essa é um começo de uma Integração entre git e fabric
 
-Criaremos um projeto no fabric, usaremos lakehouse, notebook spark, dataflow , tambem criaremos dos workspace relatorio e engenharia.
+
+# Criamos um projeto no fabric, usamos lakehouse, notebook spark, dataflow , tambem criaremos dos workspace relatorio e engenharia.
 
 ## Introdução
 Este projeto foi desenvolvido utilizando o Microsoft Fabric, integrado com Power BI para a criação de um relatório financeiro. Abaixo está uma descrição detalhada de cada etapa e componente envolvido.
@@ -40,7 +40,7 @@ Integração: Facilita a integração de diferentes fontes de dados.
 
 * Utilização de um notebook Spark para o tratamento da tabela fRecebimentos.
 
-Etapas do Tratamento:
+
 
 ## 3. Leitura dos dados brutos.
 
