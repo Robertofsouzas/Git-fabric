@@ -24,7 +24,7 @@ O que é Tabela Delta?
 A Tabela Delta é um formato de armazenamento otimizado que permite a execução de operações ACID (Atomicidade, Consistência, Isolamento, Durabilidade) em um data lake.
 
 # Estrutura do Projeto
-## 1: Criação dos Workspaces
+#### 1 Criação dos Workspaces
 
 Dois workspaces foram criados: Engenharia e Relatórios.
 
