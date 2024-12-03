@@ -2,26 +2,26 @@ Essa é um começo de uma Integração entre git e fabric
 
 Criaremos um projeto no fabric, usaremos lakehouse, notebook spark, dataflow , tambem criaremos dos workspace relatorio e engenharia.
 
-Introdução
+## Introdução
 Este projeto foi desenvolvido utilizando o Microsoft Fabric, integrado com Power BI para a criação de um relatório financeiro. Abaixo está uma descrição detalhada de cada etapa e componente envolvido.
 
-Vantagens de usar o Microsoft Fabric
+## Vantagens de usar o Microsoft Fabric
 Integração: Facilita a integração de diferentes fontes de dados.
 
-Escalabilidade: Capaz de lidar com grandes volumes de dados.
+- Escalabilidade: Capaz de lidar com grandes volumes de dados.
 
-Flexibilidade: Permite utilizar diferentes ferramentas de ETL e análise.
+- Flexibilidade: Permite utilizar diferentes ferramentas de ETL e análise.
 
-Segurança: Oferece segurança robusta para proteção dos dados.
+- Segurança: Oferece segurança robusta para proteção dos dados.
 
-O que é o OneLake?
-O OneLake é um recurso do Microsoft Fabric que unifica o armazenamento de dados em um único local, simplificando o gerenciamento e acessibilidade dos dados.
+# O que é o OneLake?
+_ O OneLake é um recurso do Microsoft Fabric que unifica o armazenamento de dados em um único local, simplificando o gerenciamento e acessibilidade dos dados.
 
-O que é Lakehouse?
-O Lakehouse combina as melhores características de data lakes e data warehouses, permitindo armazenar dados não estruturados e estruturados com capacidades de processamento analítico.
+# O que é Lakehouse?
+- O Lakehouse combina as melhores características de data lakes e data warehouses, permitindo armazenar dados não estruturados e estruturados com capacidades de processamento analítico.
 
-O que é Tabela Delta?
-A Tabela Delta é um formato de armazenamento otimizado que permite a execução de operações ACID (Atomicidade, Consistência, Isolamento, Durabilidade) em um data lake.
+# O que é Tabela Delta?
+_ A Tabela Delta é um formato de armazenamento otimizado que permite a execução de operações ACID (Atomicidade, Consistência, Isolamento, Durabilidade) em um data lake.
 
 # Estrutura do Projeto
 ### 1. Criação dos Workspaces
