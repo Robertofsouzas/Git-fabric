@@ -26,11 +26,11 @@ A Tabela Delta é um formato de armazenamento otimizado que permite a execução
 # Estrutura do Projeto
 ### 1 Criação dos Workspaces
 
-Dois workspaces foram criados: Engenharia e Relatórios.
+* Dois workspaces foram criados: Engenharia e Relatórios.
 
-O workspace Engenharia é utilizado para armazenamento e processamento dos dados.
+* O workspace Engenharia é utilizado para armazenamento e processamento dos dados.
 
-O workspace Relatórios é utilizado para a criação dos relatórios no Power BI.
+* O workspace Relatórios é utilizado para a criação dos relatórios no Power BI.
 
 Criação do Lakehouse
 
