@@ -72,6 +72,9 @@ Etapas do Tratamento:
 As tecnologias utilizadas proporcionam um fluxo de trabalho eficiente e seguro para o gerenciamento e análise de dados.
 
 
+### Acesso ao Relatório Financeiro
+Você pode acessar o relatório financeiro desenvolvido no Power BI através deste [link](https://app.powerbi.com/reportEmbed?reportId=8bf27f2d-d683-4254-a2a0-5f7054c971fa&autoAuth=true&ctid=dc99190e-570a-495f-95c0-f63a23fc80de).
+
 
 ![Relatório_Financeiro](https://github.com/Robertofsouzas/Git-fabric/blob/main/Relatorio_financeiro.png)
 
