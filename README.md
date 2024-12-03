@@ -73,5 +73,5 @@ As tecnologias utilizadas proporcionam um fluxo de trabalho eficiente e seguro p
 
 
 
-![Relatório_Financeiro]([URL_DA_IMAGEM](https://github.com/Robertofsouzas/Git-fabric/blob/main/Relatorio_financeiro.png))
+![Relatório_Financeiro](https://github.com/Robertofsouzas/Git-fabric/blob/main/Relatorio_financeiro.png)
 
